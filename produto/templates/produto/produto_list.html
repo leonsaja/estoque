@@ -28,7 +28,7 @@
                     <i class="fa fa-minus-circle no"></i>
                   {% endif %}
                 </td>
-                <td>{{produto.produto}}</td>
+                <td><a href="{% url 'produto:detail_produto' produto.id %}" >{{produto.produto}}</a></td>
                 <td>{{produto.preco}}</td>
                 <td>{{produto.estoque}}</td>
                 <td>{{produto.data}}</td>

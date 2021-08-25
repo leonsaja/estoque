@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+
+{%block title%}
+    Detalhe do Produto
+{%endblock title%}
+
+
+{% block content %}
+<div class="row">
+
+
+
+  <div class="col-sm-8 ">
+    <div class="align-items-center">
+    <div class="card ">
+      <div class="card-header">
+        Detalhe do Produto
+      </div>
+      <div class="container mt-3 ml-3">
+         <h5><b>Importado:</b>
+          {% if produto.importado %}
+          <i class="fa fa-check-circle ok"></i>
+          {% else %}
+          <i class="fa fa-minus-circle no"></i>
+          {%endif%}
+        </h5>
+          <h5><b>Produto:</b>  <span>{{produto.produto}} </span></h5>
+           <h5><b>NCM:</b>  <span>{{produto.ncm}} </span></h5>
+           <h5><b>Preco:</b>  <span>{{produto.preco}} </span></h5>
+           <h5><b>Quantidade:</b>  <span>{{produto.estoque}} </span></h5>
+
+  </div>
+
+
+
+    </div>
+        </div>
+  </div>
+
+</div>
+{%endblock content%}
