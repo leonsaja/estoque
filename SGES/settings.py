@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'produto',
     'core',
     'estoque',
+
+    #pacote
+    'adminlte3',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +67,7 @@ ROOT_URLCONF = 'SGES.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR,'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

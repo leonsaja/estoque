@@ -26,7 +26,6 @@ class Produto(models.Model):
 
 
 
-
 class Categoria(models.Model):
     categoria = models.CharField(max_length=100, unique=True)
 

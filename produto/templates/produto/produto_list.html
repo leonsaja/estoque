@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+
+{%block title%}
+    Listar de Produtos
+{%endblock title%}
+
+
+{%block content%}
+<div class="page-header">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Importado</th>
+            <th>Produto</th>
+            <th>Preco</th>
+            <th>Estoque</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {%for produto in produtos%}
+            <tr>
+                <td>
+                    {% if produto.importado %}
+                    <i class="fa fa-check-circle ok"></i>
+                  {% else %}
+                    <i class="fa fa-minus-circle no"></i>
+                  {% endif %}
+                </td>
+                <td>{{produto.produto}}</td>
+                <td>{{produto.preco}}</td>
+                <td>{{produto.estoque}}</td>
+                <td>{{produto.data}}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+
+    </table>
+    </div>
+{%endblock content%}
