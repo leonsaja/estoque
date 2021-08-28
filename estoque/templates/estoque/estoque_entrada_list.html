@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{%block title%} Movimento no Estoque {%endblock title%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+         <div class="col-md-12 ">
+                <div class="float-right mt-3">
+                    <form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 " method="GET">
+
+                        <div class="input-group">
+                            <input name="search" type="text" class="form-control bg-light border-0 small" placeholder="Pesquisa"  value="{{request.GET.search}}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" >
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <br>
+    <div class="table-responsive-md">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>NF</th>
+            <th>Data</th>
+            <th>Movimento</th>
+            <th>Funcionario</th>
+<!--            <th colspan="2">Opção</th>-->
+        </tr>
+        </thead>
+        <tbody>
+
+        {%for movimento in movimentos%}
+        <tr>
+             <td><a href="#" >{{movimento}}</a></td>
+            <td>{{movimento.nf}}</td>
+            <td>{{movimento.created}}</td>
+            <td>{{movimento.movimento}}</td>
+             <td>{{movimento.Funcionario}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+
+    </table>
+        </div>
+</div>
+{%endblock content%}

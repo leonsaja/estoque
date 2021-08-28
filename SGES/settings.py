@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     #pacote
     'adminlte3',
     'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

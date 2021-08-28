@@ -34,9 +34,9 @@
         {% include 'includes/sidenav.html'%}
 
         <div id="content-wrapper" class="d-flex flex-column">
+                {% include 'includes/navbar.html'%}
 
-
-                {% include 'includes/navbar.html'%} {% block content %}
+            {% block content %}
                 {% endblock %}
 
             {% include 'includes/footer.html'%}

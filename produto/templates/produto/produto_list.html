@@ -55,11 +55,11 @@
             <td>{{produto.preco}}</td>
             <td>{{produto.estoque}}</td>
             <td style="text-align: center;">{{produto.total}}</td>
-            <td><a href="" class="btn btn-warning p-1 ml-3">Editar</a>
+            <td><a href="{% url 'produto:editar_produto' produto.id %}" class="btn btn-warning p-1 ml-3">Editar</a>
 
             </td>
             <td>
-                <a href="" class="btn btn-danger p-1 m-0">Excluir</a>
+                <a href="#" class="btn btn-danger p-1 m-0">Excluir</a>
             </td>
         </tr>
         {%endfor%}

@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from core.models import DataCriacao
@@ -15,9 +16,16 @@ class Estoque(DataCriacao):
     movimento=models.CharField(max_length=1,choices=CHOICES_MOVIMENTO,blank=True)
 
 
+    class Meta:
+        verbose_name_plural = "Estoques"
+        verbose_name = "Estoque"
+
+    def __str__(self):
+        return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
+
 class EstoqueItens(models.Model):
 
-    estoque = models.ForeignKey(Estoque, on_delete=models.CASCADE,related_name='estoques')
+    estoque = models.ForeignKey(Estoque, on_delete=models.CASCADE,related_name='estoque')
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.PositiveIntegerField(blank=True, null=True)
     saldo=models.PositiveIntegerField(default=0)
