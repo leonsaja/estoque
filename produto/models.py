@@ -19,6 +19,12 @@ class Produto(models.Model):
 
     class Meta:
         ordering = ('produto',)
+    
+    def total(self):
+        soma=self.preco*self.estoque
+        
+        return soma
+    
 
     def __str__(self):
         return self.produto

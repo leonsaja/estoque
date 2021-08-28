@@ -1,0 +1,61 @@
+/*
+.img-profile.card-img{
+   height: initial;
+   width: 100%;
+   height: initial;
+    aspect-ratio: 1;
+
+}
+
+.navbar.bar {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+ */
+
+
+/*  sidebar  menu lateral  */
+
+.menu {
+    background-color: #066017;
+
+}
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+}
+
+
+/*  rodape da pagina */
+.sticky-footer.rodape{
+      background-color:transparent;
+}
+/* collapse botão */
+.card-header.coll{
+background-color: #066017;
+color:white;
+
+}
+/* bar admin-django  */
+.main-sidebar.bar{
+    background-color: #066017 !important;
+}
+
+/* body*/
+body{
+
+    color: black !important;
+}
+th{
+    color: black !important;
+}
+
+
+
+

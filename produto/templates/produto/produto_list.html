@@ -6,36 +6,66 @@
 
 
 {%block content%}
-<div class="page-header">
+<div class="container">
+    <div class="row">
+         <div class="col-md-12 ">
+                <div class="float-right mt-3">
+                    <form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 " method="GET">
+
+                        <div class="input-group">
+                            <input name="search" type="text" class="form-control bg-light border-0 small" placeholder="Pesquisa"  value="{{request.GET.search}}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" >
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    <br>
+    <div class="table-responsive-md">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Importado</th>
+            <th>NCM</th>
             <th>Produto</th>
             <th>Preco</th>
             <th>Estoque</th>
-            <th>Data</th>
+            <th style="text-align: center;">Total R$</th>
+              <th colspan="2"style="text-align: center;">Opção</th>
         </tr>
-        </thead>
+        </thead> 
         <tbody>
 
         {%for produto in produtos%}
-            <tr>
-                <td>
-                    {% if produto.importado %}
-                    <i class="fa fa-check-circle ok"></i>
-                  {% else %}
-                    <i class="fa fa-minus-circle no"></i>
-                  {% endif %}
-                </td>
-                <td><a href="{% url 'produto:detail_produto' produto.id %}" >{{produto.produto}}</a></td>
-                <td>{{produto.preco}}</td>
-                <td>{{produto.estoque}}</td>
-                <td>{{produto.data}}</td>
-            </tr>
+        <tr>
+            <td>
+                {% if produto.importado %}
+                <i class="fa fa-check-circle ok"></i>
+                {% else %}
+                <i class="fa fa-minus-circle no"></i>
+                {% endif %}
+            </td>
+            <th>{{produto.ncm}}</th>
+            <td><a href="{% url 'produto:detail_produto' produto.id %}" >{{produto.produto}}</a></td>
+            <td>{{produto.preco}}</td>
+            <td>{{produto.estoque}}</td>
+            <td style="text-align: center;">{{produto.total}}</td>
+            <td><a href="" class="btn btn-warning p-1 ml-3">Editar</a>
+
+            </td>
+            <td>
+                <a href="" class="btn btn-danger p-1 m-0">Excluir</a>
+            </td>
+        </tr>
         {%endfor%}
         </tbody>
 
     </table>
-    </div>
+        </div>
+</div>
 {%endblock content%}
