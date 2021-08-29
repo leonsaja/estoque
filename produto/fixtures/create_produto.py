@@ -2,7 +2,7 @@ import os,django,string,timeit
 from random import choice, randint, random
 from produto.models import Produto
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SGES.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE","SGES.settings")
 django.setup()
 
 class Utils:

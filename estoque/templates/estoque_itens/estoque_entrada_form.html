@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load bootstrap4 %}
+{% block title %}
+Entrada no estoque
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Entrada no Estoque</h1>
+    <form method="POST" enctype="multipart/form-data" >
+        <div class="row">
+            <div class="col-md-12">
+
+                {% csrf_token %}
+                {% bootstrap_form form %}
+
+
+            </div>
+        </div>
+        <div class="row">
+            {{formset.management_form}}
+
+            {% for formset in formset%}
+
+            <div class="col-md-12">
+                <div class="inlineform">
+                    {% bootstrap_form  form=formset %}
+                </div>
+            </div>
+            {%endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+
+
+</div>
+
+{%endblock content%}
+
+{% block scripts %}
+
+    $(function() {
+    $('.inlineform').formset({
+    prefix: '{{ formset.prefix }}',
+    addText: '<br><br><i class="material-icons">add</i> Adicionar ',
+    deleteText: '<br><i class="material-icons">delete</i> Remover ',
+    });
+    })
+{%endblock scripts%}

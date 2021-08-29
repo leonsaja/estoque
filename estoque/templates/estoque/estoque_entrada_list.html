@@ -35,13 +35,13 @@
         </thead>
         <tbody>
 
-        {%for movimento in movimentos%}
+        {%for obj in objs%}
         <tr>
-             <td><a href="#" >{{movimento}}</a></td>
-            <td>{{movimento.nf}}</td>
-            <td>{{movimento.created}}</td>
-            <td>{{movimento.movimento}}</td>
-             <td>{{movimento.Funcionario}}</td>
+             <td><a href="{% url 'estoque:estoque_entrada_detail' obj.id%}" >{{obj}}</a></td>
+                <td>{{obj.nf}}</td>
+                <td>{{obj.created}}</td>
+                <td>{{obj.movimento}}</td>
+                <td>{{obj.funcionario.first_name}}</td>
         </tr>
         {%endfor%}
         </tbody>
