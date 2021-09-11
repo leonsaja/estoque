@@ -63,7 +63,7 @@ def dar_saida_estoque(request):
             form.save()
             formset=formset.save()
             dar_baixa_estoque(formset)
-            return redirect('estoque:estoque_entrada_list')
+            return redirect('estoque:estoque_saida_list')
     else:
         formset=Estoque_itens_formset(instance=estoque_form, prefix='estoque')
         form = EstoqueForm(instance=estoque_form, prefix='main')
