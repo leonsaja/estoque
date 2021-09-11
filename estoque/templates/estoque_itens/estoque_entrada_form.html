@@ -20,11 +20,11 @@ Entrada no estoque
         <div class="row">
             {{formset.management_form}}
 
-            {% for formset in formset%}
+            {% for forms in formset%}
 
             <div class="col-md-12">
                 <div class="inlineform">
-                    {% bootstrap_form  form=formset %}
+                    {% bootstrap_form  form=forms %}
                 </div>
             </div>
             {%endfor %}
@@ -43,8 +43,9 @@ Entrada no estoque
     $(function() {
     $('.inlineform').formset({
     prefix: '{{ formset.prefix }}',
-    addText: '<br><br><i class="material-icons">add</i> Adicionar ',
-    deleteText: '<br><i class="material-icons">delete</i> Remover ',
+    deleteText: '<div></div><br><i class="material-icons">delete</i> Remover ',
+    addText: '<br><i class="material-icons">add</i> Adicionar ',
+
     });
     })
 {%endblock scripts%}

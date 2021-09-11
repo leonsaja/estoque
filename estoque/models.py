@@ -1,4 +1,4 @@
-import datetime
+from datetime import  datetime
 from django.contrib.auth.models import User
 from django.db import models
 from core.models import DataCriacao
@@ -21,8 +21,34 @@ class Estoque(DataCriacao):
         verbose_name = "Estoque"
 
     def __str__(self):
-        return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
+        data=self.created.strftime('%d-%m-%Y')
+        return '{} - {} - {}'.format(self.pk, self.nf, data)
+    
+class EstoqueEntradaManager(models.Manager):
+    def get_queryset(self):
+        return super(EstoqueEntradaManager, self).get_queryset().filter(movimento='E')
+    
+class EstoqueEntrada(Estoque):
+    objects= EstoqueEntradaManager()
+    
+    class Meta:
+        proxy=True
+        verbose_name_plural = 'estoque entrada'
+        verbose_name = 'estoque entrada'
 
+class EstoqueSaidaManager(models.Manager):
+    def get_queryset(self):
+        return super(EstoqueSaidaManager, self).get_queryset().filter(movimento='S')
+
+class EstoqueSaida(Estoque):
+    
+    objects= EstoqueSaidaManager()
+    class Meta:
+        proxy=True
+        verbose_name_plural = 'estoque saida'
+        verbose_name = 'estoque saida'
+
+    
 class EstoqueItens(models.Model):
 
     estoque = models.ForeignKey(Estoque, on_delete=models.CASCADE)
@@ -30,7 +56,7 @@ class EstoqueItens(models.Model):
     quantidade = models.PositiveIntegerField(blank=True, null=True)
     saldo=models.PositiveIntegerField(default=0)
 
-    class Meta:
+    class meta:
         ordering = ('pk',)
 
     def __str__(self):

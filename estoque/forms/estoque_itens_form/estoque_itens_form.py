@@ -2,7 +2,6 @@ from django import  forms
 from django.forms import inlineformset_factory
 from estoque.models import Estoque, EstoqueItens
 
-
 class EstoqueItensForm(forms.ModelForm):
 
     class Meta:

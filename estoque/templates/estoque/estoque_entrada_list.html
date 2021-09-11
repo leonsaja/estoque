@@ -4,6 +4,11 @@
 {%block content%}
 <div class="container">
     <div class="row">
+        <div class="col-sm-12 text-right">
+            <a href="{% url 'estoque:add_entrada_estoque'%}" class="btn btn-primary">Adicionar</a>
+        </div>
+     </div>
+    <div class="row">
          <div class="col-md-12 ">
                 <div class="float-right mt-3">
                     <form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 " method="GET">
@@ -28,7 +33,6 @@
             <th>Item</th>
             <th>NF</th>
             <th>Data</th>
-            <th>Movimento</th>
             <th>Funcionario</th>
 <!--            <th colspan="2">Opção</th>-->
         </tr>
@@ -40,7 +44,6 @@
              <td><a href="{% url 'estoque:estoque_entrada_detail' obj.id%}" >{{obj}}</a></td>
                 <td>{{obj.nf}}</td>
                 <td>{{obj.created}}</td>
-                <td>{{obj.movimento}}</td>
                 <td>{{obj.funcionario.first_name}}</td>
         </tr>
         {%endfor%}
