@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from core.models import DataCriacao
 from produto.models import Produto
+from estoque.managers import EstoqueEntradaManager, EstoqueSaidaManager
 
 class Estoque(DataCriacao):
 
@@ -23,10 +24,7 @@ class Estoque(DataCriacao):
     def __str__(self):
         data=self.created.strftime('%d-%m-%Y')
         return '{} - {} - {}'.format(self.pk, self.nf, data)
-    
-class EstoqueEntradaManager(models.Manager):
-    def get_queryset(self):
-        return super(EstoqueEntradaManager, self).get_queryset().filter(movimento='E')
+
     
 class EstoqueEntrada(Estoque):
     objects= EstoqueEntradaManager()
@@ -36,9 +34,7 @@ class EstoqueEntrada(Estoque):
         verbose_name_plural = 'estoque entrada'
         verbose_name = 'estoque entrada'
 
-class EstoqueSaidaManager(models.Manager):
-    def get_queryset(self):
-        return super(EstoqueSaidaManager, self).get_queryset().filter(movimento='S')
+
 
 class EstoqueSaida(Estoque):
     

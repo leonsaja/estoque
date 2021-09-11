@@ -20,7 +20,11 @@ class EstoqueEntradadeteilView(DetailView):
             context['obj']=Estoque.objects.get(pk=self.kwargs['pk'])
 
             return context
-
+class EstoqueSaidaListView(ListView):
+      model = Estoque
+      template_name = 'estoque/estoque_entrada_list.html'
+      queryset = Estoque.objects.filter(movimento='S')
+      context_object_name = 'objs'
 
 
 

@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% load bootstrap4 %}
+{% block title %} Saída no estoque {% endblock title %}
+
+
+{% block content %}
+<div class="container">
+	<h1 class="text-center">Saída no Estoque</h1>
+	<form method="POST" enctype="multipart/form-data">
+		<div class="row">
+			<div class="col-md-12">{% csrf_token %} {% bootstrap_form form %}</div>
+		</div>
+		<div class="row">
+			{{formset.management_form}} {% for forms in formset%}
+
+			<div class="col-md-12">
+				<div class="inlineform">{% bootstrap_form form=forms %}</div>
+			</div>
+			{%endfor %}
+		</div>
+
+		<button type="submit" class="btn btn-success">Salvar</button>
+	</form>
+</div>
+
+{%endblock content%}
+
+{% block scripts %}
+
+    $(function() {
+    $('.inlineform').formset({
+    prefix: '{{ formset.prefix }}',
+    deleteText: '<div></div><br><i class="material-icons">delete</i> Remover ',
+    addText: '<br><i class="material-icons">add</i> Adicionar ',
+
+    });
+    })
+{%endblock scripts%}

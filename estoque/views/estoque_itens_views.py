@@ -7,7 +7,7 @@ from estoque.models import EstoqueItens, Estoque
 from produto.models import Produto
 
 
-def dar_baixa_estoque(form):
+def dar_entrada_estoque(form):
     produtos=list(form)
 
     for item in produtos:
@@ -27,9 +27,45 @@ def add_entrada_estoque(request):
             form.movimento='E'
             form.save()
             formset=formset.save()
-            dar_baixa_estoque(formset)
+            dar_entrada_estoque(formset)
             return redirect('estoque:estoque_entrada_list')
     else:
         formset=Estoque_itens_formset(instance=estoque_form, prefix='estoque')
         form = EstoqueForm(instance=estoque_form, prefix='main')
     return render(request,'estoque_itens/estoque_entrada_form.html',{'form':form,'formset':formset})
+
+
+def  dar_baixa_estoque(form):
+    produtos=list(form)
+
+    for item in produtos:
+        produto = Produto.objects.get(pk=item.produto.id)
+        
+        
+        try:
+            if produto.estoque > item.quantidade:
+                produto.estoque -= item.quantidade
+                produto.save()
+        except:
+            raise ValueError('Quantidade maior do que estoque !')
+
+
+def dar_saida_estoque(request):
+    
+    estoque_form=Estoque()
+    if request.method == 'POST':
+        formset=Estoque_itens_formset(request.POST or None, instance=estoque_form, prefix='estoque')
+        form=EstoqueForm(request.POST or None,instance=estoque_form, prefix='main')
+        if formset.is_valid() and form.is_valid():
+            form=form.save(commit=False)
+            form.funcionario=request.user
+            form.movimento='S'
+            form.save()
+            formset=formset.save()
+            dar_baixa_estoque(formset)
+            return redirect('estoque:estoque_entrada_list')
+    else:
+        formset=Estoque_itens_formset(instance=estoque_form, prefix='estoque')
+        form = EstoqueForm(instance=estoque_form, prefix='main')
+    return render(request,'estoque_itens/estoque_saida_form.html',{'form':form,'formset':formset})
+    
