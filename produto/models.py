@@ -24,7 +24,13 @@ class Produto(models.Model):
         soma=self.preco*self.estoque
         
         return soma
-    
+    def to_dict_json(self):
+        return{
+            'id':self.id,
+            'produto': self.produto,
+            'estoque':self.estoque,
+
+        }
 
     def __str__(self):
         return self.produto

@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, ListView, DetailView,UpdateView
 from produto.forms import ProdutoForm
 from produto.models import Produto
+from django.http import JsonResponse
 from django.db.models import Q
 
 class CadastrarProdutoView(CreateView):
@@ -29,3 +30,11 @@ class EditarProdutoView(UpdateView):
     model = Produto
     form_class =ProdutoForm
     template_name = 'produto/form_produto.html'
+    
+def produtoJson(request, pk):
+    produtos=Produto.objects.filter(id=pk)
+    produto_json=[ item.to_dict_json() for item in produtos]
+    return JsonResponse({'data':produto_json})
+    
+    
+    

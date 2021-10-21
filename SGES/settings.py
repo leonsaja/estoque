@@ -16,7 +16,8 @@ from decouple import config
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [
+                       s.strip() for s in v.split(',')])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,9 +32,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,8 +44,9 @@ INSTALLED_APPS = [
     'produto',
     'core',
     'estoque',
+    'accounts',
 
-    #pacote
+    # pacote
     'adminlte3',
     'bootstrap4',
     'widget_tweaks',
@@ -68,7 +67,7 @@ ROOT_URLCONF = 'SGES.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'templates'],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +133,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'produto:listar_produtos'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -143,9 +145,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

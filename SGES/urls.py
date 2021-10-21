@@ -5,10 +5,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('estoque/',include('estoque.urls', namespace='estoques')),
-    path('produto/',include('produto.urls', namespace='produto')),
+    path('estoque/', include('estoque.urls', namespace='estoques')),
+    path('produto/', include('produto.urls', namespace='produto')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('', include('core.urls', namespace='core')),
 
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

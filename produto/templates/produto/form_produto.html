@@ -1,23 +1,16 @@
-{% extends 'base.html'%}
-{% load bootstrap4 %}
-{%block title %}
-Cadastro de Produto
-
-{%endblock title%}
-
-{%block content%}
+{% extends 'base.html'%} {% load bootstrap4 %} {%block title %} Cadastro de
+Produto {%endblock title%} {%block content%}
 <div class="container">
-    <div class="row">
-
-  <div class="col-md-12">
-    <form method="POST">
-        {% csrf_token%}
-              <div class="form-group">
-                {% bootstrap_form form %}
-                </div>
-                <button type="submit" class="btn btn-success">Salvar</button>
-    </form>
-    </div>
-    </div>
+	<div class="card-header">Cadastro</div>
+	<div class="row">
+		<div class="col-md-12">
+			<form method="POST">
+				{% csrf_token%}
+				<div class="form-group">{% bootstrap_form form %}</div>
+				<button type="submit" class="btn btn-success">Salvar</button>
+			</form>
+		</div>
+	</div>
+</div>
 
 {%endblock content%}

@@ -38,8 +38,9 @@ Entrada no estoque
 
 {%endblock content%}
 
-{% block scripts %}
 
+{% block scripts %}
+   <script>
     $(function() {
     $('.inlineform').formset({
     prefix: '{{ formset.prefix }}',
@@ -48,4 +49,8 @@ Entrada no estoque
 
     });
     })
-{%endblock scripts%}
+    </script>
+
+    <script src="/static/script.js"></script>
+{%endblock scripts %}
+
