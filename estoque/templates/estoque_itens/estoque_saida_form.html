@@ -1,38 +1,60 @@
-{% extends 'base.html'%}
-{% load bootstrap4 %}
-{% block title %} Saída no estoque {% endblock title %}
-
-
-{% block content %}
+{% extends 'base.html'%}{% load meus_filtros %} {%block title %} Saída no estoque {% endblock title %} {% block content %}
 <div class="container">
 	<h1 class="text-center">Saída no Estoque</h1>
-	<form method="POST" enctype="multipart/form-data">
+	<div class="row">
+	<form method="POST" class="col-md-12" >
+		{% csrf_token %}
+		<br />
 		<div class="row">
-			<div class="col-md-12">{% csrf_token %} {% bootstrap_form form %}</div>
-		</div>
-		<div class="row">
-			{{formset.management_form}} {% for forms in formset%}
-
-			<div class="col-md-12">
-				<div class="inlineform">{% bootstrap_form form=forms %}</div>
+			<div class="from-group col-8">
+				<label class="mb-2">NF</label>
+				{{form.nf |addclass:'form-control'}}
+				<smail>{{form.nf.error}}</smail>
 			</div>
-			{%endfor %}
 		</div>
-
+		<br>
+		{{formset.management_form}} 
+		{% for forms in formset%}
+		<div class="row">
+			<div class="from-group col-4">
+				<label class="mb-2">Produto</label>
+				{{forms.produto |addclass:'form-control'}}
+				<smail>{{forms.produtoerror}}</smail>
+			</div>
+		
+			<div class="from-group col-4">
+				<label class="mb-2" for="">Quantidade</label>
+				{{forms.quantidade |addclass:'form-control'}}
+				<smail>{{forms.quantidade.errors}}</smail>
+			</div>
+			<div class="from-group col-4">
+				<label class="mb-2">Saldo</label>
+				{{forms.saldo |addclass:'form-control'}}
+				<br>
+				<span class="id_saldo" style='padding-top:15px' > </span>
+			
+		
+		</div>
+	
+		{%endfor %}
+		</div>
+		
+		<br>
 		<button type="submit" class="btn btn-success">Salvar</button>
 	</form>
+	</div>
 </div>
 
-{%endblock content%}
-
-{% block scripts %}
-
-    $(function() {
-    $('.inlineform').formset({
-    prefix: '{{ formset.prefix }}',
-    deleteText: '<div></div><br><i class="material-icons">delete</i> Remover ',
-    addText: '<br><i class="material-icons">add</i> Adicionar ',
-
-    });
-    })
+{%endblock content%} {% block scripts %}
+<script src="/static/estoque/estoque_saida.js"></script>
+<script>
+	$(function () {
+		$(".inlineform").formset({
+			prefix: "{{ formset.prefix }}",
+			deleteText:
+				'<div></div><br><i class="material-icons">delete</i> Remover ',
+			addText: '<br><i class="material-icons">add</i> Adicionar ',
+		});
+	});
+</script>
 {%endblock scripts%}

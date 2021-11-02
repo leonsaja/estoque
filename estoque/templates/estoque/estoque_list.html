@@ -1,15 +1,18 @@
-{% extends 'base.html' %}
-{%block title%} Movimento de Saida no Estoque{%endblock title%}
+{% extends 'base.html' %} 
+{%block title%}
 
 
-
+Movimento no Estoque {%endblock title%}
 {%block content%}
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 text-right">
-			<a href="{% url 'estoque:dar_saida_estoque'%}" class="btn btn-primary"
-				>Saída</a
-			>
+		{% if request.resolver_match.url_name == 'estoque_entrada_list' %} 
+			<a href="{% url 'estoque:add_entrada_estoque'%}" class="btn btn-primary">Entrada</a>
+		{%else%} 
+		<a href="{% url 'estoque:add_saida_estoque'%}" class="btn btn-primary">Saída</a>
+		{%endif%} 
 		</div>
 	</div>
 	<div class="row">
@@ -42,7 +45,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Itemsa</th>
+					<th>Item</th>
 					<th>NF</th>
 					<th>Data</th>
 					<th>Funcionario</th>
@@ -53,8 +56,14 @@
 				{%for obj in objs%}
 				<tr>
 					<td>
+						{% if request.resolver_match.url_name == 'estoque_entrada_list' %} 
+						<a href="{% url 'estoque:estoque_entrada_detail' obj.id%}"
+							>{{obj}}</a
+						{%else%} 
 						<a href="{% url 'estoque:estoque_saida_detail' obj.id%}"
 							>{{obj}}</a
+						{%endif%} 
+						
 						>
 					</td>
 					<td>{{obj.nf}}</td>

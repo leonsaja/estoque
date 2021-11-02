@@ -13,10 +13,10 @@ class Estoque(DataCriacao):
         ('S', 'Saida'),
     )
 
-    funcionario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    funcionario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     nf = models.PositiveIntegerField('Nota Fiscal', blank=True, null=True)
     movimento = models.CharField(
-        max_length=1, choices=CHOICES_MOVIMENTO, blank=True)
+        max_length=1, choices=CHOICES_MOVIMENTO, blank=False)
 
     class Meta:
         verbose_name_plural = "Estoques"
@@ -48,11 +48,10 @@ class EstoqueSaida(Estoque):
 
 class EstoqueItens(models.Model):
 
-    estoque = models.ForeignKey(
-        Estoque, on_delete=models.CASCADE, related_name='estoques')
-    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantidade = models.PositiveIntegerField(blank=True, null=True)
-    saldo = models.PositiveIntegerField(default=0)
+    estoque = models.ForeignKey(Estoque, on_delete=models.CASCADE, related_name='estoques')
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, null=False,blank=False)
+    quantidade = models.PositiveIntegerField(blank=False, null=False)
+    saldo = models.PositiveIntegerField(blank=False)
 
     class meta:
         ordering = ('pk',)

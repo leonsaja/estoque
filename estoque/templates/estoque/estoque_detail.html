@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {%block title%} Detalhe no Estoque{%endblock title%}
+{% extends 'base.html'%} {%block title%} Detalhe no Estoque {%endblock title%}
 {% block content %}
 <br />
 <div class="container">
@@ -6,7 +6,12 @@
 		<div class="col-sm-8">
 			<div class="align-items-center">
 				<div class="card">
-					<div class="card-header">Detalhe da Entrada</div>
+					{% if request.resolver_match.url_name == 'estoque_entrada_detail' %} 
+						<div class="card-header">Detalhe da Entrada</div>
+					{%else%} 
+						<div class="card-header">Detalhe da Saída</div>
+					{%endif%} 
+					
 					<div class="container mt-3 ml-3">
 						<h5>
 							<b>Funcionario:</b> <span>{{obj.funcionario.first_name}}</span>
@@ -31,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{%for obj in obj.estoqueitens_set.all %}
+				{% for obj in obj.estoques.all %}
 				<tr>
 					<td>{{obj.produto}}</td>
 					<td>{{obj.quantidade}}</td>
